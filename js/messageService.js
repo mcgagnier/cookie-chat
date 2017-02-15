@@ -8,18 +8,18 @@ angular.module('chatroom').service('messageService', function($http){
   // 'https://practiceapi.devmounta.in/api/chats'
   // //Be sure to return whatever gets returned from $http so you can call.
   // then in your controller.
-var messages;
+    var messages;
 
-this.getMessages = function() {
-    return $http({
-        method: GET,
-        url: 'https://practiceapi.devmounta.in/api/chats'
-    }).then(function(response){
-        messages = response.data.data;
-        return messages
+    this.getMessages = function() {
+        return $http({
+            method: 'GET',
+            url: 'https://practiceapi.devmounta.in/api/chats'
+        }).then(function(response){
+            messages = response.data;
+            return messages
 
-    });
-}
+        });
+    }
 
 
 
@@ -33,6 +33,15 @@ this.getMessages = function() {
   // so you can then use .then in your controller.
 
 
+  this.postMessage = function(message) {
+      return $http({
+          method: 'POST',
+          url: 'https://practiceapi.devmounta.in/api/chats',
+          data: {
+              message: message
+          }
+      })
+  }
 
 
 });
